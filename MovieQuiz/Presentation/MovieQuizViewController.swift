@@ -25,6 +25,9 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
     
+    @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var yesButton: UIButton!
+    
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
     
@@ -74,6 +77,8 @@ final class MovieQuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        yesButton.isEnabled = true
+        noButton.isEnabled = false
         show(quiz: convert(model: questions[currentQuestionIndex]))
     }
     
@@ -98,6 +103,8 @@ final class MovieQuizViewController: UIViewController {
             show(quiz: QuizResultsViewModel(title: "Этот раунд окончен!", text: "Ваш результат \(correctAnswers) / 10", buttonText: "Сыграть еще раз"))
         } else {
             currentQuestionIndex += 1
+            yesButton.isEnabled = true
+            noButton.isEnabled = true
             show(quiz: convert(model: questions[currentQuestionIndex]))
         }
     }
@@ -137,12 +144,14 @@ final class MovieQuizViewController: UIViewController {
     @IBAction private func answerYes(_ sender: UIButton) {
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = true
+        yesButton.isEnabled = false
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
     @IBAction private func answerNo(_ sender: UIButton) {
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = false
+        noButton.isEnabled = false
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
