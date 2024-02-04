@@ -3,9 +3,9 @@ import UIKit
 final class MovieQuizViewController: UIViewController {
     
     struct QuizQuestion {
-      let image: String
-      let text: String
-      let correctAnswer: Bool
+        let image: String
+        let text: String
+        let correctAnswer: Bool
     }
     
     struct QuizStepViewModel {
@@ -15,9 +15,9 @@ final class MovieQuizViewController: UIViewController {
     }
     
     struct QuizResultsViewModel {
-      let title: String
-      let text: String
-      let buttonText: String
+        let title: String
+        let text: String
+        let buttonText: String
     }
 
     
@@ -80,7 +80,7 @@ final class MovieQuizViewController: UIViewController {
     private func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
                 correctAnswers += 1
-            }
+        }
         
         imageView.layer.borderWidth = 8
         imageView.layer.cornerRadius = 20
@@ -89,13 +89,13 @@ final class MovieQuizViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                self.showNextQuestionOrResults()
-           }
+        }
     }
     
     private func showNextQuestionOrResults() {
         imageView.layer.borderColor = UIColor.ypBlack.cgColor
         if currentQuestionIndex == questions.count - 1 {
-           show(quiz: QuizResultsViewModel(title: "Этот раунд окончен!", text: "Ваш результат \(correctAnswers) / 10", buttonText: "Сыграть еще раз"))
+            show(quiz: QuizResultsViewModel(title: "Этот раунд окончен!", text: "Ваш результат \(correctAnswers) / 10", buttonText: "Сыграть еще раз"))
         } else {
             currentQuestionIndex += 1
             show(quiz: convert(model: questions[currentQuestionIndex]))
