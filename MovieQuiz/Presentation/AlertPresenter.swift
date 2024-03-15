@@ -1,10 +1,3 @@
-//
-//  AlertPresenter.swift
-//  MovieQuiz
-//
-//  Created by Александра Великая on 11.03.2024.
-//
-
 import Foundation
 import UIKit
 
@@ -13,7 +6,7 @@ protocol AlertPresenterProtocol {
     func show(alertModel: AlertModel)
 }
 
-class AlertPresenter: AlertPresenterProtocol {
+final class AlertPresenter: AlertPresenterProtocol {
     private weak var delegate: UIViewController?
     
     init(delegate: UIViewController?) {
@@ -32,11 +25,6 @@ class AlertPresenter: AlertPresenterProtocol {
             
             alertModel.completion()
         }
-        
-        /*DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard let self = self else { return }
-            self.showNextQuestionOrResults()
-        } */
         
         alert.addAction(action)
         

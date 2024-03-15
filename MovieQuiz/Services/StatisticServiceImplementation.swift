@@ -1,17 +1,8 @@
-//
-//  StatisticServiceImplementation.swift
-//  MovieQuiz
-//
-//  Created by Александра Великая on 13.03.2024.
-//
-
 import Foundation
 
-class StatisticServiceImplementation: StatisticService {
+final class StatisticServiceImplementation: StatisticService {
     
     private let userDefaults = UserDefaults.standard
-    //private let decoder: JSONDecoder
-   // private let encoder; JSONEncoder
     
     private enum Keys: String {
         case correct, total, bestGame, gamesCount
@@ -78,6 +69,4 @@ class StatisticServiceImplementation: StatisticService {
             bestGame = current
         }
     }
-    
-    
 }

@@ -7,8 +7,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
     
-    @IBOutlet weak var noButton: UIButton!
-    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet private weak var noButton: UIButton!
+    @IBOutlet private weak var yesButton: UIButton!
     
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
@@ -21,6 +21,11 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageView.layer.borderColor = UIColor.ypBlack.cgColor
+        imageView.layer.borderWidth = 8
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
         
         yesButton.isEnabled = true
         noButton.isEnabled = false
@@ -42,17 +47,13 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.show(quiz: viewModel)
         }
-            
     }
         
     private func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
             correctAnswers += 1
         }
-            
-        imageView.layer.borderWidth = 8
-        imageView.layer.cornerRadius = 20
-        imageView.layer.masksToBounds = true
+        
         imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
             
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -102,8 +103,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
              }
          )
          
-         alertPresenter?.show(alertModel: alertModel)
-         
+        alertPresenter?.show(alertModel: alertModel)
     }
     
     private func makeResultMessage() -> String {
@@ -116,7 +116,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         let resultMessage = """
                                 Ваш результат: \(correctAnswers)/\(questionsAmount)
                                 Количество сыгранных квизов: \(statisticService.gamesCount)
-                                Рекорд: \(statisticService.bestGame.correct)/\(statisticService.bestGame.total) (\(statisticService.bestGame.date.dateTimeString)
+                                Рекорд: \(statisticService.bestGame.correct)/\(statisticService.bestGame.total) (\(statisticService.bestGame.date.dateTimeString))
                                 Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%
                             """
         return resultMessage
@@ -139,5 +139,4 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         noButton.isEnabled = false
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
-        
 }
