@@ -57,7 +57,7 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBJ-ie-gXW" userLabel="Question Label">
                                         <rect key="frame" x="0.0" y="624.5" width="374" height="99.5"/>
-                                        <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                         <color key="textColor" name="YP White"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -127,7 +127,9 @@
                     <connections>
                         <outlet property="counterLabel" destination="gA9-sE-9rf" id="9Fo-uT-cNT"/>
                         <outlet property="imageView" destination="n5w-qW-tPw" id="Oai-MG-kT1"/>
+                        <outlet property="noButton" destination="jM4-4l-Di9" id="31B-87-n2Z"/>
                         <outlet property="textLabel" destination="JBJ-ie-gXW" id="0Qg-8N-htk"/>
+                        <outlet property="yesButton" destination="1C0-JX-oqk" id="eUj-c9-Y9Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
