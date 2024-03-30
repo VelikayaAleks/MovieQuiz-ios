@@ -32,13 +32,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="23.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вопрос:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdK-K5-IUv" userLabel="Question Title Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="333.5" height="23.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="338" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 <color key="textColor" name="YP White"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gA9-sE-9rf" userLabel="Index Label">
-                                                <rect key="frame" x="333.5" y="0.0" width="40.5" height="23.5"/>
+                                                <rect key="frame" x="338" y="0.0" width="36" height="23.5"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Index"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 <color key="textColor" name="YP White"/>
                                                 <nil key="highlightedColor"/>
@@ -58,7 +59,6 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBJ-ie-gXW" userLabel="Question Label">
                                         <rect key="frame" x="0.0" y="624.5" width="374" height="99.5"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="Index"/>
                                         <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                         <color key="textColor" name="YP White"/>
                                         <nil key="highlightedColor"/>
@@ -107,7 +107,6 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="1C0-JX-oqk" firstAttribute="leading" secondItem="jM4-4l-Di9" secondAttribute="trailing" constant="20" id="Bsf-gG-1BA"/>
                                             <constraint firstAttribute="height" constant="60" id="wkY-Q4-gqo"/>
                                         </constraints>
                                     </stackView>

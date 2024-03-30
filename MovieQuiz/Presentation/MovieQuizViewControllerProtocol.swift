@@ -7,7 +7,7 @@ protocol MovieQuizViewControllerProtocol: AnyObject {
     func showNetworkError(message: String)
     func didLoadDataFromServer()
     func didFailToLoadData(with error: Error)
-    func highlightImageBorder(isCorrectAnswer: Bool)
+    func highlightImageBorder(isCorrect: Bool)
     func show(quiz step: QuizStepViewModel)
     func show(quiz result: QuizResultsViewModel)
     //func answerYes()

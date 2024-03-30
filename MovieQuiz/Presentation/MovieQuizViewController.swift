@@ -1,6 +1,6 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController {
+final class MovieQuizViewController: UIViewController, MovieQuizViewControllerProtocol {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet private weak var counterLabel: UILabel!
@@ -21,7 +21,7 @@ final class MovieQuizViewController: UIViewController {
         imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
             
-        yesButton.isEnabled = true
+        yesButton.isEnabled = false
         noButton.isEnabled = false
         alertPresenter = AlertPresenter(delegate: self)
         presenter = MovieQuizPresenter(viewController: self)
@@ -68,16 +68,19 @@ final class MovieQuizViewController: UIViewController {
         showNetworkError(message: error.localizedDescription)
     }
     
-    func highlightImageBorder(isCorrectAnswer: Bool) {
+    func highlightImageBorder(isCorrect: Bool) {
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
-        imageView.layer.borderColor = isCorrectAnswer ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
+        imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
     }
     
     func show(quiz step: QuizStepViewModel) {
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
+        yesButton.isEnabled = true
+        noButton.isEnabled = true
+        imageView.layer.borderColor = UIColor.ypBlack.cgColor
     }
     
     func show(quiz result: QuizResultsViewModel) {
@@ -94,15 +97,18 @@ final class MovieQuizViewController: UIViewController {
                     self.presenter.restartGame()
                 }
 
-            alert.addAction(action)
+        alert.addAction(action)
 
-            self.present(alert, animated: true, completion: nil)
-        }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction private func answerYes(_ sender: UIButton) {
         presenter.answerYes()
+        yesButton.isEnabled = false
     }
             
     @IBAction private func answerNo(_ sender: UIButton) {
         presenter.answerNo()
+        noButton.isEnabled = false
     }
 }

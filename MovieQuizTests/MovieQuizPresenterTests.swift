@@ -22,7 +22,7 @@ final class MovieQuizViewControllerMock: MovieQuizViewControllerProtocol {
     func didFailToLoadData(with error: Error){
         
     }
-    func highlightImageBorder(isCorrectAnswer: Bool){
+    func highlightImageBorder(isCorrect: Bool){
         
     }
     func show(quiz step: QuizStepViewModel){

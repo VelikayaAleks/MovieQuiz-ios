@@ -6,13 +6,14 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     private var currentQuestionIndex: Int = 0
     let questionsAmount: Int = 10
     var currentQuestion: QuizQuestion?
-    //private weak var viewController: MovieQuizViewControllerProtocol?
-    private weak var viewController: MovieQuizViewController?
+    private weak var viewController: MovieQuizViewControllerProtocol?
+    //private weak var viewController: MovieQuizViewController?
     var correctAnswers: Int = 0
     private var questionFactory: QuestionFactoryProtocol?
     private let statisticService: StatisticService!
+    var alertPresenter: AlertPresenter?
     
-    init(viewController: MovieQuizViewController) {
+    init(viewController: MovieQuizViewControllerProtocol) {
         self.viewController = viewController
         statisticService = StatisticServiceImplementation()
         questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
@@ -53,15 +54,13 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     
     func answerYes() {
         didAnswer(isYes: true)
-        viewController?.yesButton.isEnabled = false
     }
     
     func answerNo() {
         didAnswer(isYes: false)
-        viewController?.noButton.isEnabled = false
     }
     
-    private func didAnswer(isYes: Bool) {
+    func didAnswer(isYes: Bool) {
         guard let currentQuestion = currentQuestion else {
             return
         }
@@ -84,11 +83,10 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     }
     
     func proceedWithAnswer(isCorrect: Bool) {
+        viewController?.highlightImageBorder(isCorrect: isCorrect)
         if isCorrect {
             correctAnswers += 1
         }
-            
-        viewController?.imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
                 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self = self else { return }
@@ -97,12 +95,11 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
     }
     
     func proceedToNextQuestionOrResults() {
-        viewController?.imageView.layer.borderColor = UIColor.ypBlack.cgColor
         if self.isLastQuestion()  {
             let alertModel = AlertModel(
                 title: "Этот раунд окончен!",
                 message: makeResultsMessage(),
-                buttonText: "Сыграть еще раз",
+                buttonText: "Сыграть ещё раз",
                 completion: { [weak self] in
                     self?.resetQuestionIndex()
                     self?.correctAnswers = 0
@@ -110,11 +107,10 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
                 }
             )
                  
-            viewController?.alertPresenter?.show(alertModel: alertModel)
+            alertPresenter = AlertPresenter(delegate: viewController as? MovieQuizViewController)
+            alertPresenter?.show(alertModel: alertModel)
         } else {
             self.switchToNextQuestion()
-            viewController?.yesButton.isEnabled = true
-            viewController?.noButton.isEnabled = true
             questionFactory?.requestNextQuestion()
         }
     }
