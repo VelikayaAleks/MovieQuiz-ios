@@ -1,10 +1,3 @@
-//
-//  QuestionFactory.swift
-//  MovieQuiz
-//
-//  Created by Александра Великая on 24.02.2024.
-//
-
 import Foundation
 
 final class QuestionFactory: QuestionFactoryProtocol  {
@@ -63,10 +56,6 @@ final class QuestionFactory: QuestionFactoryProtocol  {
                 self.delegate?.didReceiveNextQuestion(question: question)
             }
         }
-        
-        //let question = questions[safe: index]
-        //delegate?.didReceiveNextQuestion(question: question)
-        //}
         
         /*private let questions: [QuizQuestion] = [
          QuizQuestion (

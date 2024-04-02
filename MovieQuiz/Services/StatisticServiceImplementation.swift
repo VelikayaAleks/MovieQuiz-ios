@@ -9,17 +9,16 @@ final class StatisticServiceImplementation: StatisticService {
     }
     var correct: Int {
         get {
-                    userDefaults.integer(forKey: Keys.correct.rawValue)
-                }
-                set {
-                    userDefaults.set(newValue, forKey: Keys.correct.rawValue)
-                }
+            userDefaults.integer(forKey: Keys.correct.rawValue)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Keys.correct.rawValue)
+        }
     }
     var total: Int {
         get {
             userDefaults.integer(forKey: Keys.total.rawValue)
         }
-
         set {
             userDefaults.set(newValue, forKey: Keys.total.rawValue)
         }
@@ -34,7 +33,6 @@ final class StatisticServiceImplementation: StatisticService {
         get {
             userDefaults.integer(forKey: Keys.gamesCount.rawValue)
         }
-
         set {
             userDefaults.set(newValue, forKey: Keys.gamesCount.rawValue)
         }

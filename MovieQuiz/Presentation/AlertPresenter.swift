@@ -10,7 +10,7 @@ final class AlertPresenter: AlertPresenterProtocol {
     private weak var delegate: UIViewController?
     
     init(delegate: UIViewController?) {
-           self.delegate = delegate
+        self.delegate = delegate
     }
     
     func show(alertModel: AlertModel) {
